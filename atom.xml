@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-08-10T07:30:57+05:30</updated>
+  <updated>2014-08-10T07:35:37+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,9 +18,7 @@
     <link href="http://syllogismos.github.io/blog/2014/08/10/welcome-to-my-website/"/>
     <updated>2014-08-10T07:23:56+05:30</updated>
     <id>http://syllogismos.github.io/blog/2014/08/10/welcome-to-my-website</id>
-    <content type="html"><![CDATA[<h1>Welcome to my Blog</h1>
-
-<p><img src="http://i.imgur.com/1dpbwmZ.gif" alt="Rachel Riley" /></p>
+    <content type="html"><![CDATA[<p><img src="http://i.imgur.com/1dpbwmZ.gif" alt="Rachel Riley" /></p>
 ]]></content>
   </entry>
   
