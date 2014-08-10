@@ -5,6 +5,7 @@ date: 2014-08-10 08:11:37 +0530
 comments: true
 categories: 
 ---
+note: I did this just as an exercise, you get much more from [this post](http://blog.echen.me/2012/07/31/edge-prediction-in-a-social-graph-my-solution-to-facebooks-user-recommendation-contest-on-kaggle/).
 
 ## Link Prediction:
 We are given snapshot of a network and would like to infer which which interactions among existing
