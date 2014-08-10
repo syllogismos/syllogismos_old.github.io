@@ -4,7 +4,7 @@
   <title><![CDATA[Your medium.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-08-10T09:22:39+05:30</updated>
+  <updated>2014-08-10T09:29:37+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -18,7 +18,9 @@
     <link href="http://syllogismos.github.io/blog/2014/08/10/facebook-link-prediction/"/>
     <updated>2014-08-10T08:11:37+05:30</updated>
     <id>http://syllogismos.github.io/blog/2014/08/10/facebook-link-prediction</id>
-    <content type="html"><![CDATA[<h2>Link Prediction:</h2>
+    <content type="html"><![CDATA[<p>note: I did this just as an exercise, you get much more from <a href="http://blog.echen.me/2012/07/31/edge-prediction-in-a-social-graph-my-solution-to-facebooks-user-recommendation-contest-on-kaggle/">this post</a>.</p>
+
+<h2>Link Prediction:</h2>
 
 <p>We are given snapshot of a network and would like to infer which which interactions among existing
 members are likely to occur in the near future or which existing interactions are we missing. The challenge is to effectively combine the information from the network structure with rich node and edge
