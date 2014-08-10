@@ -4,7 +4,7 @@
   <title><![CDATA[Your medium.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-08-10T09:09:26+05:30</updated>
+  <updated>2014-08-10T09:22:39+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -246,6 +246,11 @@ Here we have <em>psi</em></p>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>octave:1&gt; clear, close all, clc;
 </span><span class='line'>octave:2&gt; rand("seed", 3410);
 </span><span class='line'>octave:3&gt; m = size(psi)(3);
@@ -253,16 +258,21 @@ Here we have <em>psi</em></p>
 </span><span class='line'>octave:5&gt; initial_w = zeroes(1,m);   % initialize the parameters to zeros or rand
 </span><span class='line'>octave:6&gt; initial_w = rand(1,n);
 </span><span class='line'>
-</span><span class='line'>to calculate the loss for a given parameter vector.
-</span><span class='line'>octave:7&gt; [loss, grad] = LossFunction(initial_w, psi, d, lambda=1, alpha=0.2, b=0.4);
-</span><span class='line'>d above is a binary vector that represents the destination nodes to begin with, you can initialize this randomly or obtain it from the graph
+</span><span class='line'>% to calculate the loss for a given parameter vector.
 </span><span class='line'>
-</span><span class='line'>training
+</span><span class='line'>octave:7&gt; [loss, grad] = LossFunction(initial_w, psi, d, lambda=1, alpha=0.2, b=0.4);
+</span><span class='line'>
+</span><span class='line'>% d above is a binary vector that represents the destination nodes to begin with, 
+</span><span class='line'>% you can initialize this randomly or obtain it from the graph
+</span><span class='line'>
+</span><span class='line'>% training
 </span><span class='line'>octave:8&gt; options = optimset('GradObj', 'on', 'MaxIter', 20);
 </span><span class='line'>octave:9&gt; [w,loss] = ...
 </span><span class='line'>  fmincg(@(t)(LossFunction(t, psi, d, lambda=1,alpha=0.2,b=0.4)),
 </span><span class='line'>  initial_w, options);
-</span><span class='line'>w obtained above is the parameters we obtained after gradient descent
+</span><span class='line'>
+</span><span class='line'>% w obtained above is the parameters we obtained after gradient descent
+</span><span class='line'>
 </span><span class='line'>octave:10&gt; y = 10;
 </span><span class='line'>octave:11&gt; [nodes, P] = GetNodesFromParam(w, psi,d,alpha = 0.2,y);</span></code></pre></td></tr></table></div></figure>
 
