@@ -4,7 +4,7 @@
   <title><![CDATA[My blog.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-08-10T09:40:39+05:30</updated>
+  <updated>2014-08-10T10:08:06+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -282,11 +282,11 @@ Here we have <em>psi</em></p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Welcome to My Website]]></title>
+    <title type="html"><![CDATA[Welcome to My Blog]]></title>
     <link href="http://syllogismos.github.io/blog/2014/08/10/welcome-to-my-website/"/>
     <updated>2014-08-10T07:23:56+05:30</updated>
     <id>http://syllogismos.github.io/blog/2014/08/10/welcome-to-my-website</id>
-    <content type="html"><![CDATA[<p><img src="http://i.imgur.com/1dpbwmZ.gif" alt="Rachel Riley" /></p>
+    <content type="html"><![CDATA[<p><img src="http://i.minus.com/iR5NTkhHOUE41.gif" alt="Rachel Riley" /></p>
 ]]></content>
   </entry>
   
