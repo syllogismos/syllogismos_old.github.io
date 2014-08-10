@@ -115,102 +115,40 @@ attribute data.</p>
 
 <h3>The optimization problem:</h3>
 
-<p>The training data contains information that source node <em>s</em> will create edges to node <em>d subset D</em> and not <em>l subset L</em>. So we set parameters <em>w</em> of the function <em>f<sub>w</sub>(psi<sub>uv</sub>)</em> so that it will assign edge weights <em>a<sub>uv</sub></em> in such a way that the random walk will be more likely to visit nodes in <em>D</em> than <em>L</em>, <em>i.e.,</em> <em>p<sub>l</sub> &lt; p<sub>d</sub></em> for each <em>d subset D</em> and <em>l subset L</em>. And thus we define the optimization problem as follows.</p>
+<p>The training data contains information that source node <em>s</em> will create edges to node <em>d subset D</em> and not <em>l subset L</em>. So we set parameters <em>w</em> of the function <em>f<sub>w</sub>(psi<sub>uv</sub>)</em> so that it will assign edge weights <em>a<sub>uv</sub></em> in such a way that the random walk will be more likely to visit nodes in <em>D</em> than <em>L</em>, <em>i.e.,</em> <em>p<sub>l</sub> &lt; p<sub>d</sub></em> for each <em>d subset D</em> and <em>l subset L</em>. And thus we define the optimization problem as follows.<br/>
+<img src="http://i.imgur.com/zMjJ1Nb.png" alt="optimization problem hard version" /></p>
 
-<hr />
-
-<p><img src="http://i.imgur.com/zMjJ1Nb.png" alt="optimization problem hard version" /></p>
-
-<hr />
-
-<p>where <em>p</em> is the vector of pagerank scores. Pagerank scores <em>p<sub>i</sub></em> depend on edge strength on <em>a<sub>uv</sub></em> and thus actually depend on <em>f<sub>w</sub>(psi<sub>uv</sub>)</em> which is parameterized by <em>w</em>. The above equation (1) simply states that we want to find <em>w</em> such that the pagerank score of nodes in <em>D</em> will be greater than the scores of nodes in <em>L</em>. We prefer the shortest <em>w</em> parameters simply for the sake of regularization. But the above equation is the &ldquo;hard&rdquo; version of the optimization problem. However it is unlikely that a solution satisfying all the constraints exist. We make the optimization problem &ldquo;soft&rdquo; by introducing a loss function that penalizes the violated constraints. Now the optimization problem becomes,</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/oZ2pYN1.png" alt="optimization problem soft version." /></p>
-
-<hr />
-
-<p>where lambda is the regularization parameter that trades off between the complexity(norm of <em>w</em>) for the fit of the model(how much the constraints can be violated). And <em>h(.)</em> is a loss function that assigns a non-negative penalty according to the difference of the scores <em>p<sub>l</sub>-p<sub>d</sub></em>. <em>h(.) = 0</em> if <em>p<sub>l</sub> &lt; p<sub>d</sub></em> as the constraint is not violated and <em>h(.) > 0</em> if <em>p<sub>l</sub> > p<sub>d</sub></em></p>
+<p>where <em>p</em> is the vector of pagerank scores. Pagerank scores <em>p<sub>i</sub></em> depend on edge strength on <em>a<sub>uv</sub></em> and thus actually depend on <em>f<sub>w</sub>(psi<sub>uv</sub>)</em> which is parameterized by <em>w</em>. The above equation (1) simply states that we want to find <em>w</em> such that the pagerank score of nodes in <em>D</em> will be greater than the scores of nodes in <em>L</em>. We prefer the shortest <em>w</em> parameters simply for the sake of regularization. But the above equation is the &ldquo;hard&rdquo; version of the optimization problem. However it is unlikely that a solution satisfying all the constraints exist. We make the optimization problem &ldquo;soft&rdquo; by introducing a loss function that penalizes the violated constraints. Now the optimization problem becomes,<br/>
+<img src="http://i.imgur.com/oZ2pYN1.png" alt="optimization problem soft version." /><br/>
+where lambda is the regularization parameter that trades off between the complexity(norm of <em>w</em>) for the fit of the model(how much the constraints can be violated). And <em>h(.)</em> is a loss function that assigns a non-negative penalty according to the difference of the scores <em>p<sub>l</sub>-p<sub>d</sub></em>. <em>h(.) = 0</em> if <em>p<sub>l</sub> &lt; p<sub>d</sub></em> as the constraint is not violated and <em>h(.) > 0</em> if <em>p<sub>l</sub> > p<sub>d</sub></em></p>
 
 <h3>Solving the optimization problem:</h3>
 
 <p>First we need to establish connection between the parameters <em>w</em> and the random walk scores <em>p</em>. Then we show how to obtain partial derivatives of the loss function and <em>p</em> with respect to <em>w</em> and then perform gradient descent to obtain optimal values of <em>w</em> and minimize loss.
-We build a random walk stochastic transition matrix <em>Q<sup>&lsquo;</sup></em> from the edge strengths <em>a<sub>uv</sub></em> calculated from <em>f<sub>w</sub>(psi<sub>uv</sub>)</em>.</p>
+We build a random walk stochastic transition matrix <em>Q<sup>&lsquo;</sup></em> from the edge strengths <em>a<sub>uv</sub></em> calculated from <em>f<sub>w</sub>(psi<sub>uv</sub>)</em>.<br/>
+<img src="http://i.imgur.com/JiSHf7t.png" alt="Q dash" /></p>
 
-<hr />
-
-<p><img src="http://i.imgur.com/JiSHf7t.png" alt="Q dash" /></p>
-
-<hr />
-
-<p>To obtain the final random walk transition probability matrix <em>Q</em>, we also incorporate the restart probability <em>alpha</em>, <em>i.e.,</em> the probability with which the random walk jumps back to seed node <em>s</em>, and thus &ldquo;restarts&rdquo;.</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/vE2P7LJ.png" alt="Q" /></p>
-
-<hr />
+<p>To obtain the final random walk transition probability matrix <em>Q</em>, we also incorporate the restart probability <em>alpha</em>, <em>i.e.,</em> the probability with which the random walk jumps back to seed node <em>s</em>, and thus &ldquo;restarts&rdquo;.<br/>
+<img src="http://i.imgur.com/vE2P7LJ.png" alt="Q" /></p>
 
 <p>each entry <em>Q<sub>uv</sub></em> deﬁnes the conditional probability that a walk will traverse edge (u, v) given that it is currently at node u.
-The vector <em>p</em> is the stationary distribution of the Random Walk with restarts(also known as Personalized Page Rank), and is the solution to the following eigen vector equation.</p>
+The vector <em>p</em> is the stationary distribution of the Random Walk with restarts(also known as Personalized Page Rank), and is the solution to the following eigen vector equation.<br/>
+<img src="http://i.imgur.com/UFwnobA.png" alt="eigen vector equation" /></p>
 
-<hr />
-
-<p><img src="http://i.imgur.com/UFwnobA.png" alt="eigen vector equation" /></p>
-
-<hr />
-
-<p>The above equation establishes the connection between page rank scores <em>p</em> and the parameters <em>w</em> via the random walk transition probability matrix <em>Q</em>. Our goal now is to minimize the soft version of the loss function(eq. 2) with respect to parameter vector <em>w</em>. We do this by obtaining the gradient of <em>F(w)</em> with respect to <em>w</em>, and then performing gradient based optimization method to find <em>w</em> that minimize <em>F(w)</em>. This gets complicated due to the fact that equation 4 is recursive. For this we introduce <em>delta<sub>ld</sub> = p<sub>l</sub>-p<sub>d</sub></em> and then we can write the derivative</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/FhZVZEB.png" alt="delta ld" /></p>
-
-<hr />
-
-<p>and then we can write the derivative of <em>F(w)</em> as follows</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/oisE40X.png" alt="lossfunction gradient with delta" /></p>
-
-<hr />
-
-<p>For commonly used loss functions <em>h(.)</em> it is easy to calculate derivative, but it is not clear how to obtain partial derivatives of <em>p</em> wrt <em>w</em>. <em>p</em> is the principle eigen vector of matrix <em>Q</em>. The above eigen vector equation can also be written as follows.</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/z00CXm4.png" alt="eigen vector reduced form." /></p>
-
-<hr />
-
-<p>and taking the derivatives now gives</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/FhZVZEB.png" alt="derivative of p recursive form" /></p>
-
-<hr />
-
-<p>above <em>p<sub>u</sub></em> and its partial derivative are entangled in the equation, however we compute the above values iteratively as follows</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/WneoOOn.png" alt="power method to compute p and its partial derivative iteratively." /></p>
-
-<hr />
-
-<p>we initialize the vector <em>p</em> as <em>1/|V|</em> and all its derivatives as zeroes before the iteration starts and terminates the recursion till the <em>p</em> and its derivatives converge for an epsilon say <em>10e-12</em>.
-To solve equation 4, we need partial derivative of <em>Q<sub>ju</sub></em>, this calculation is straight forward. When <em>(j,u) subset E</em> derivative of <em>Q<sub>ju</sub></em> is</p>
-
-<hr />
-
-<p><img src="http://i.imgur.com/aLDlWP4.png" alt="partial derivative of Qju" /></p>
-
-<hr />
-
-<p>and derivative of <em>Q<sub>ju</sub></em> is zero if edge <em>(j,u)</em> is not a subset of <em>E</em>.</p>
+<p>The above equation establishes the connection between page rank scores <em>p</em> and the parameters <em>w</em> via the random walk transition probability matrix <em>Q</em>. Our goal now is to minimize the soft version of the loss function(eq. 2) with respect to parameter vector <em>w</em>. We do this by obtaining the gradient of <em>F(w)</em> with respect to <em>w</em>, and then performing gradient based optimization method to find <em>w</em> that minimize <em>F(w)</em>. This gets complicated due to the fact that equation 4 is recursive. For this we introduce <em>delta<sub>ld</sub> = p<sub>l</sub>-p<sub>d</sub></em> and then we can write the derivative<br/>
+<img src="http://i.imgur.com/FhZVZEB.png" alt="delta ld" /><br/>
+and then we can write the derivative of <em>F(w)</em> as follows<br/>
+<img src="http://i.imgur.com/oisE40X.png" alt="lossfunction gradient with delta" /><br/>
+For commonly used loss functions <em>h(.)</em> it is easy to calculate derivative, but it is not clear how to obtain partial derivatives of <em>p</em> wrt <em>w</em>. <em>p</em> is the principle eigen vector of matrix <em>Q</em>. The above eigen vector equation can also be written as follows.<br/>
+<img src="http://i.imgur.com/z00CXm4.png" alt="eigen vector reduced form." /><br/>
+and taking the derivatives now gives<br/>
+<img src="http://i.imgur.com/FhZVZEB.png" alt="derivative of p recursive form" /><br/>
+above <em>p<sub>u</sub></em> and its partial derivative are entangled in the equation, however we compute the above values iteratively as follows<br/>
+<img src="http://i.imgur.com/WneoOOn.png" alt="power method to compute p and its partial derivative iteratively." /><br/>
+we initialize the vector <em>p</em> as <em>1/|V|</em> and all its derivatives as zeroes before the iteration starts and terminates the recursion till the <em>p</em> and its derivatives converge for an epsilon say <em>10e-12</em>.
+To solve equation 4, we need partial derivative of <em>Q<sub>ju</sub></em>, this calculation is straight forward. When <em>(j,u) subset E</em> derivative of <em>Q<sub>ju</sub></em> is<br/>
+<img src="http://i.imgur.com/aLDlWP4.png" alt="partial derivative of Qju" /><br/>
+and derivative of <em>Q<sub>ju</sub></em> is zero if edge <em>(j,u)</em> is not a subset of <em>E</em>.</p>
 
 <h2>My Implementation:</h2>
 
