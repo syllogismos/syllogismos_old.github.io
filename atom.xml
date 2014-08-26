@@ -4,7 +4,7 @@
   <title><![CDATA[My blog.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-08-26T23:46:10+05:30</updated>
+  <updated>2014-08-26T23:50:39+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -147,12 +147,12 @@
 <ul>
 <li>If everything worked fine, you will be able to see your blog with the defalt octopress template on YOUR-GITHUB-USER-NAME.github.io</li>
 <li>Every time you update your blog you need ro do <em>rake generate</em> and <em>rake deploy</em> these commands will push your changes to your master branch on the remote</li>
-<li>You can make a new post using <em>rake new-post</em> command</li>
+<li>You can make a new post using <em>rake new_post</em> command</li>
 </ul>
 
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; rake new-post["My first Blog Post"]</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; rake new_post["My first Blog Post"]</span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
@@ -188,7 +188,7 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; rake new-post["new blog post"]
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; rake new_post["new blog post"]
 </span><span class='line'>&gt; rake generate
 </span><span class='line'>&gt; rake deploy # to deploy static files in the remote master branch.
 </span><span class='line'>&gt; git add . # or you can specify the markdown file
