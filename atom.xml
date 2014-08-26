@@ -4,7 +4,7 @@
   <title><![CDATA[My blog.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-08-26T23:10:49+05:30</updated>
+  <updated>2014-08-26T23:46:10+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Boilerplate Nodejs Twitter Bot That Responds to Twitter Mentions.]]></title>
+    <link href="http://syllogismos.github.io/blog/2014/08/26/a-boilerplate-nodejs-twitter-bot-that-responds-to-twitter-mentions/"/>
+    <updated>2014-08-26T23:20:56+05:30</updated>
+    <id>http://syllogismos.github.io/blog/2014/08/26/a-boilerplate-nodejs-twitter-bot-that-responds-to-twitter-mentions</id>
+    <content type="html"><![CDATA[<p>Start by forking this <a href="https://github.com/syllogismos/twitter-bot-template">github repo</a></p>
+
+<h4>Config:</h4>
+
+<p>Make a copy of config.template.json named config.json, and fill your secret keys of your twitter bot that you obtain from <a href="https://apps.twitter.com">here</a> and make sure your twitter app has both read and write access in the &ldquo;permissions&rdquo; tab.</p>
+
+<h4>Installation</h4>
+
+<p>Install all the node dependencies.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; npm install</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Your bot code.</h4>
+
+<p>The bot is written in coffeescript, and the compiled javascript is also provided in case if you prefer that.</p>
+
+<p>At the least you need to fill the function <strong>solve</strong> whose only argument is the tweet text, include all the mentions. Not the Tweet Object, its just the tweet text.</p>
+
+<p>You are also provided with a function <strong>isOfWrongFormat</strong> that defaults to <em>false</em> which checks the validity of the tweet text. And its only argument is the tweet text as well. Not the tweet object.</p>
+
+<h4>Running the bot.</h4>
+
+<p>If you wrote the bot in coffee-script do this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; coffee twitterBot.coffee</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or if you wrote it in plain javascript do this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; node twitterBot.js</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you want to compile your coffee-script to plain javascript you can run the coffee command with a <em>-c</em> flag</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; coffee -c twitterBot.coffee</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress Blog as User Page in Github, Using Windows]]></title>

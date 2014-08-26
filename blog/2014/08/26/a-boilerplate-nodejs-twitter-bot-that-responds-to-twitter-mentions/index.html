@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Welcome to My Blog - My blog.</title>
+  <title>A Boilerplate Nodejs Twitter Bot That Responds to Twitter Mentions. - My blog.</title>
   <meta name="author" content="syllogismos">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="Start by forking this github repo Config: Make a copy of config.template.json named config.json, and fill your secret keys of your twitter bot that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://syllogismos.github.io/blog/2014/08/10/welcome-to-my-website">
+  <link rel="canonical" href="http://syllogismos.github.io/blog/2014/08/26/a-boilerplate-nodejs-twitter-bot-that-responds-to-twitter-mentions">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="My blog." type="application/atom+xml">
@@ -69,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Welcome to My Blog</h1>
+      <h1 class="entry-title">A Boilerplate Nodejs Twitter Bot That Responds to Twitter Mentions.</h1>
     
     
       <p class="meta">
@@ -85,14 +84,54 @@
   
 
 
-<time datetime="2014-08-10T07:23:56+05:30" pubdate data-updated="true">Aug 10<sup>th</sup>, 2014</time>
+<time datetime="2014-08-26T23:20:56+05:30" pubdate data-updated="true">Aug 26<sup>th</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><img src="http://i.minus.com/iR5NTkhHOUE41.gif" alt="Rachel Riley" /></p>
+<div class="entry-content"><p>Start by forking this <a href="https://github.com/syllogismos/twitter-bot-template">github repo</a></p>
+
+<h4>Config:</h4>
+
+<p>Make a copy of config.template.json named config.json, and fill your secret keys of your twitter bot that you obtain from <a href="https://apps.twitter.com">here</a> and make sure your twitter app has both read and write access in the &ldquo;permissions&rdquo; tab.</p>
+
+<h4>Installation</h4>
+
+<p>Install all the node dependencies.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; npm install</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Your bot code.</h4>
+
+<p>The bot is written in coffeescript, and the compiled javascript is also provided in case if you prefer that.</p>
+
+<p>At the least you need to fill the function <strong>solve</strong> whose only argument is the tweet text, include all the mentions. Not the Tweet Object, its just the tweet text.</p>
+
+<p>You are also provided with a function <strong>isOfWrongFormat</strong> that defaults to <em>false</em> which checks the validity of the tweet text. And its only argument is the tweet text as well. Not the tweet object.</p>
+
+<h4>Running the bot.</h4>
+
+<p>If you wrote the bot in coffee-script do this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; coffee twitterBot.coffee</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or if you wrote it in plain javascript do this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; node twitterBot.js</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you want to compile your coffee-script to plain javascript you can run the coffee command with a <em>-c</em> flag</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; coffee -c twitterBot.coffee</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -115,7 +154,7 @@
   
 
 
-<time datetime="2014-08-10T07:23:56+05:30" pubdate data-updated="true">Aug 10<sup>th</sup>, 2014</time>
+<time datetime="2014-08-26T23:20:56+05:30" pubdate data-updated="true">Aug 26<sup>th</sup>, 2014</time>
       
 
 
@@ -123,7 +162,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://syllogismos.github.io/blog/2014/08/10/welcome-to-my-website/" data-via="2abstract4me" data-counturl="http://syllogismos.github.io/blog/2014/08/10/welcome-to-my-website/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://syllogismos.github.io/blog/2014/08/26/a-boilerplate-nodejs-twitter-bot-that-responds-to-twitter-mentions/" data-via="2abstract4me" data-counturl="http://syllogismos.github.io/blog/2014/08/26/a-boilerplate-nodejs-twitter-bot-that-responds-to-twitter-mentions/" >Tweet</a>
   
   
   
@@ -132,8 +171,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/08/10/octopress-blog-as-user-page-in-github/" title="Previous Post: Octopress blog as User Page in Github, using Windows">&laquo; Octopress blog as User Page in Github, using Windows</a>
       
-        <a class="basic-alignment right" href="/blog/2014/08/10/facebook-link-prediction/" title="Next Post: Facebook Link Prediction">Facebook Link Prediction &raquo;</a>
       
     </p>
   </footer>
