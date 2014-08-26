@@ -45,9 +45,9 @@ https://github.com/YOUR-GITHUB-USER-NAME/YOUR-GITHUB-USER-NAME.github.io
 ```
 - If everything worked fine, you will be able to see your blog with the defalt octopress template on YOUR-GITHUB-USER-NAME.github.io
 - Every time you update your blog you need ro do *rake generate* and *rake deploy* these commands will push your changes to your master branch on the remote
-- You can make a new post using *rake new-post* command
+- You can make a new post using *rake new_post* command
 ```
-> rake new-post["My first Blog Post"]
+> rake new_post["My first Blog Post"]
 ```
 - The above command creates a new markdown file in source/_posts folder, write your blog in markdown
 - Commit the changes you made locally in your local branch *source*
@@ -65,7 +65,7 @@ https://github.com/YOUR-GITHUB-USER-NAME/YOUR-GITHUB-USER-NAME.github.io
 
 ## This is what you do everytime you create a new post
 ```
-> rake new-post["new blog post"]
+> rake new_post["new blog post"]
 > rake generate
 > rake deploy # to deploy static files in the remote master branch.
 > git add . # or you can specify the markdown file
