@@ -110,13 +110,16 @@ Android app that implements tinder ui, based on https://github.com/exctasy2/tind
 
 <h3>Activities:</h3>
 
-<p>The main activity is MyntraTinderActivity that is based on the default DrawerLayoutActivity provided
+<ul>
+<li><p><strong>MyntraTinderActivity</strong>: This is the main activity that is based on the default DrawerLayoutActivity provided
 to us in Android Studio.<br/>
-It extends the NavigationDrawerCallbacks from NavigationDrawerFragmentSingleElv to handle click events
+It extends <strong>NavigationDrawerCallbacks</strong> from <strong>NavigationDrawerFragmentSingleElv</strong> to handle click events
 in the drawer fragment.</p>
 
 <ul>
-<li>Layout: activity_myntra_tinder.xml</li>
+<li><em>Layout</em>: <em>activity_myntra_tinder.xml</em></li>
+</ul>
+</li>
 </ul>
 
 
@@ -125,38 +128,38 @@ in the drawer fragment.</p>
 <h3>Fragments:</h3>
 
 <ul>
-<li><p>NavigationDrawerFragmentSingleElv: Fragment that implements the navigation drawer, that has a single
-ExpandbleListView where you can find all the product groups, you click on the relavent product group
+<li><p><strong>NavigationDrawerFragmentSingleElv</strong>: Fragment that implements the navigation drawer, that has a single
+<em>ExpandbleListView</em> where you can find all the product groups, you click on the relavent product group
 to get products presented to you in the form a Tinder Stack. It also has a list view for things like
 &ldquo;Home&rdquo;, &ldquo;Settings&rdquo; etc.,</p>
 
 <ul>
-<li>Layouts: fragment_navigation_drawer_myntra_tinder_activity_single_elv.xml</li>
-<li>Adapters: MyntraCategoryExpandableListAdapter, to populate various product categories to our ExpandableListView</li>
+<li><em>Layouts</em>: <em>fragment_navigation_drawer_myntra_tinder_activity_single_elv.xml</em></li>
+<li><em>Adapters</em>: <strong>MyntraCategoryExpandableListAdapter</strong>, to populate various product categories to our <em>ExpandableListView</em></li>
 </ul>
 </li>
-<li><p>TinderUIFragment: Fragment that has the ProductStackView with in which we showcase a given list of products
+<li><p><strong>TinderUIFragment</strong>: Fragment that has the ProductStackView with in which we showcase a given list of products
 in a tinder stack.</p>
 
 <ul>
-<li>Layouts: fragment_tinder_ui.xml</li>
-<li>Adapters:</li>
+<li><em>Layouts</em>: <em>fragment_tinder_ui.xml</em></li>
+<li><em>Adapters</em>:</li>
 </ul>
 </li>
-<li><p>HomeFragment: Place holder fragment that you can further develop upon to show what ever you want, currently,
+<li><p><strong>HomeFragment</strong>: Place holder fragment that you can further develop upon to show what ever you want, currently,
 this fragment shows up when you click ListView items like &ldquo;Home&rdquo;, &ldquo;Settings&rdquo;.</p>
 
 <ul>
-<li>Layouts: fragment_home.xml</li>
-<li>Adapters:</li>
+<li><em>Layouts</em>: <em>fragment_home.xml</em></li>
+<li><em>Adapters</em>:</li>
 </ul>
 </li>
-<li><p>LikedProductsFragment: Fragment that contains a single ListView that is used to display all the liked products from
-a single product group. This is implemented inside the MyntraTinderActivity</p>
+<li><p><strong>LikedProductsFragment</strong>: Fragment that contains a single ListView that is used to display all the liked products from
+a single product group. This is implemented inside the <strong>MyntraTinderActivity</strong></p>
 
 <ul>
-<li>Layouts: activity_product_list_view</li>
-<li>Adapters: ProductListAdapterWithACursor, a cursor adapter that takes a cursor obtained from a database
+<li><em>Layouts</em>: <em>activity_product_list_view.xml</em></li>
+<li><em>Adapters</em>: <strong>ProductListAdapterWithACursor</strong>, a cursor adapter that takes a cursor obtained from a database
 operation and fills our listView</li>
 </ul>
 </li>
@@ -166,19 +169,19 @@ operation and fills our listView</li>
 <h3>Views:</h3>
 
 <ul>
-<li><p>SingleProductView: View that implements what each Card in the TinderStack looks like, this is what you swipe right
+<li><p><strong>SingleProductView</strong>: View that implements what each Card in the TinderStack looks like, this is what you swipe right
 or left to like or dislike a particular product.</p>
 
 <ul>
-<li>Layouts: product_card.xml</li>
-<li>Adapters:</li>
+<li><em>Layouts</em>: <em>product_card.xml</em></li>
+<li><em>Adapters</em>:</li>
 </ul>
 </li>
-<li><p>ProductStackView: View that contains the whole stack,</p>
+<li><p><strong>ProductStackView</strong>: View that contains the whole stack,</p>
 
 <ul>
-<li>Layouts:</li>
-<li>Adapters: ProductCardAdapter, adapter that loads, given list of products in to our tinder stack, you can find
+<li><em>Layouts</em>:</li>
+<li><em>Adapters</em>: <strong>ProductCardAdapter</strong>, adapter that loads, given list of products in to our tinder stack, you can find
 helper functions inside this adapter and see how we initialize the adapter in various cases.</li>
 </ul>
 </li>
@@ -188,8 +191,8 @@ helper functions inside this adapter and see how we initialize the adapter in va
 <h3>Models:</h3>
 
 <ul>
-<li>Product: A model that defines a single Product and its parameters</li>
-<li>MyntraCategory: A model that defines product categories, sub categories etc., and also an helper function to load
+<li><strong>Product</strong>: A model that defines a single Product and its parameters</li>
+<li><strong>MyntraCategory</strong>: A model that defines product categories, sub categories etc., and also an helper function to load
 these into our ExpandableListView.</li>
 </ul>
 
@@ -197,9 +200,9 @@ these into our ExpandableListView.</li>
 <h3>Utils:</h3>
 
 <ul>
-<li>DatabaseHelper: Helper functions that handle all database operations and our db schema is also defined in this.</li>
-<li>Downloader: Helper functions to download json, to our phones filesystem, given url, postData and filename</li>
-<li>ProductsJSONPullParser: Helper functions to parse a given json file and return a list of Products.</li>
+<li><strong>DatabaseHelper</strong>: Helper functions that handle all database operations and our db schema is also defined in this.</li>
+<li><strong>Downloader</strong>: Helper functions to download json, to our phones filesystem, given url, postData and filename</li>
+<li><strong>ProductsJSONPullParser</strong>: Helper functions to parse a given json file and return a list of Products.</li>
 </ul>
 
 
