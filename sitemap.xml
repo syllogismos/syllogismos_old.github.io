@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://syllogismos.github.io/blog/2014/09/04/tinder-like-android-app-that-showcases-products-from-a-fashion-website/</loc>
+    <lastmod>2014-09-04T08:07:44+05:30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://syllogismos.github.io/blog/2014/08/26/a-boilerplate-nodejs-twitter-bot-that-responds-to-twitter-mentions/</loc>
     <lastmod>2014-08-26T23:20:56+05:30</lastmod>
     <priority>0.8</priority>
@@ -29,14 +35,14 @@
   
   <url>
     <loc>http://syllogismos.github.io/blog/archives/</loc>
-    <lastmod>2014-08-27T00:09:15+05:30</lastmod>
+    <lastmod>2014-09-04T08:09:43+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://syllogismos.github.io/</loc>
-    <lastmod>2014-08-27T00:09:15+05:30</lastmod>
+    <lastmod>2014-09-04T08:09:43+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

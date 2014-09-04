@@ -9,7 +9,8 @@
   <meta name="author" content="syllogismos">
 
   
-  <meta name="description" content="Start by forking this github repo Config: Make a copy of config.template.json named config.json, and fill your secret keys of your twitter bot that &hellip;">
+  <meta name="description" content="Github repo: https://github.com/syllogismos/MyntraTinder
+Android app that implements tinder ui, based on https://github.com/exctasy2/tinder-card- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,243 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/04/tinder-like-android-app-that-showcases-products-from-a-fashion-website/">Tinder Like Android App That Showcases Products From a Fashion Website</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-04T08:07:44+05:30" pubdate data-updated="true">Sep 4<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>Github repo: <a href="https://github.com/syllogismos/MyntraTinder">https://github.com/syllogismos/MyntraTinder</a></li>
+<li>Android app that implements tinder ui, based on <a href="https://github.com/exctasy2/tinder-card-stack">https://github.com/exctasy2/tinder-card-stack</a></li>
+<li>Latest apk build file <a href="https://github.com/syllogismos/MyntraTinder/blob/master/app-debug.apk">here</a></li>
+<li>Current build is pretty decent, I&rsquo;m pretty happy with it logically, UI can be improved.</li>
+</ul>
+
+
+<h2>UI</h2>
+
+<p><img src="http://i.imgur.com/d7o9Ccz.png" title="Navigation Drawer" alt="Navigation Drawer" />
+<img src="http://i.imgur.com/FbgLOf4.png" title="Like" alt="Swipe Right" />
+<img src="http://i.imgur.com/sTMeDDr.png" title="Dislike" alt="Swipe Left" /></p>
+
+<h2>Relavent Activities, Fragments, Views, Models, Resources, Layouts and Adapters</h2>
+
+<h3>Activities:</h3>
+
+<p>The main activity is MyntraTinderActivity that is based on the default DrawerLayoutActivity provided
+to us in Android Studio.<br/>
+It extends the NavigationDrawerCallbacks from NavigationDrawerFragmentSingleElv to handle click events
+in the drawer fragment.</p>
+
+<ul>
+<li>Layout: activity_myntra_tinder.xml</li>
+</ul>
+
+
+<p>The rest of the activities in the project are just for testing and trying various things.</p>
+
+<h3>Fragments:</h3>
+
+<ul>
+<li><p>NavigationDrawerFragmentSingleElv: Fragment that implements the navigation drawer, that has a single
+ExpandbleListView where you can find all the product groups, you click on the relavent product group
+to get products presented to you in the form a Tinder Stack. It also has a list view for things like
+&ldquo;Home&rdquo;, &ldquo;Settings&rdquo; etc.,</p>
+
+<ul>
+<li>Layouts: fragment_navigation_drawer_myntra_tinder_activity_single_elv.xml</li>
+<li>Adapters: MyntraCategoryExpandableListAdapter, to populate various product categories to our ExpandableListView</li>
+</ul>
+</li>
+<li><p>TinderUIFragment: Fragment that has the ProductStackView with in which we showcase a given list of products
+in a tinder stack.</p>
+
+<ul>
+<li>Layouts: fragment_tinder_ui.xml</li>
+<li>Adapters:</li>
+</ul>
+</li>
+<li><p>HomeFragment: Place holder fragment that you can further develop upon to show what ever you want, currently,
+this fragment shows up when you click ListView items like &ldquo;Home&rdquo;, &ldquo;Settings&rdquo;.</p>
+
+<ul>
+<li>Layouts: fragment_home.xml</li>
+<li>Adapters:</li>
+</ul>
+</li>
+<li><p>LikedProductsFragment: Fragment that contains a single ListView that is used to display all the liked products from
+a single product group. This is implemented inside the MyntraTinderActivity</p>
+
+<ul>
+<li>Layouts: activity_product_list_view</li>
+<li>Adapters: ProductListAdapterWithACursor, a cursor adapter that takes a cursor obtained from a database
+operation and fills our listView</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Views:</h3>
+
+<ul>
+<li><p>SingleProductView: View that implements what each Card in the TinderStack looks like, this is what you swipe right
+or left to like or dislike a particular product.</p>
+
+<ul>
+<li>Layouts: product_card.xml</li>
+<li>Adapters:</li>
+</ul>
+</li>
+<li><p>ProductStackView: View that contains the whole stack,</p>
+
+<ul>
+<li>Layouts:</li>
+<li>Adapters: ProductCardAdapter, adapter that loads, given list of products in to our tinder stack, you can find
+helper functions inside this adapter and see how we initialize the adapter in various cases.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Models:</h3>
+
+<ul>
+<li>Product: A model that defines a single Product and its parameters</li>
+<li>MyntraCategory: A model that defines product categories, sub categories etc., and also an helper function to load
+these into our ExpandableListView.</li>
+</ul>
+
+
+<h3>Utils:</h3>
+
+<ul>
+<li>DatabaseHelper: Helper functions that handle all database operations and our db schema is also defined in this.</li>
+<li>Downloader: Helper functions to download json, to our phones filesystem, given url, postData and filename</li>
+<li>ProductsJSONPullParser: Helper functions to parse a given json file and return a list of Products.</li>
+</ul>
+
+
+<h2>Additional Notes:</h2>
+
+<h4>Note1:</h4>
+
+<p>When you select a product category/group in the expandable list view, it queries the database for 20 products from that
+category, if the db doesn&rsquo;t even have a single product from that category, it gets new products from the server side, 96
+at a time and fill the db with new products. And returns 20 new products to the ProductStackAdapter</p>
+
+<h4>Note2:</h4>
+
+<p>Our product categories have 3 levels of hierarchy, but ExpandableListView has only 2 levels, so the top most level,
+say &ldquo;Men&rdquo; is also technically a &ldquo;Group&rdquo; with no children, it only behaves as a header to the next two levels in the hierarchy.
+Below is the actual hierarchy of product groups.</p>
+
+<ul>
+<li>Men
+
+<ul>
+<li>Footwear
+
+<ol>
+<li> Casual Shoes</li>
+<li> Formal Shoes</li>
+</ol>
+</li>
+<li>Accessories
+
+<ol>
+<li> Watches</li>
+<li> Sunglasses</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Women
+
+<ul>
+<li>Footwear
+
+<ol>
+<li> Heels</li>
+<li> Wedges</li>
+</ol>
+</li>
+<li>Accessories
+
+<ol>
+<li> Watches</li>
+<li> Sunglasses</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>But for our convenience, to put it inside an ExpandableListView, we changed it to below</p>
+
+<ul>
+<li>Men</li>
+<li>Footwear
+
+<ol>
+<li> Casual Shoes</li>
+<li> Formal Shoes</li>
+</ol>
+</li>
+<li>Accessories
+
+<ol>
+<li> Watches</li>
+<li> Sunglasses</li>
+</ol>
+</li>
+<li>Women</li>
+<li>Footwear
+
+<ol>
+<li> Heels</li>
+<li> Wedges</li>
+</ol>
+</li>
+<li>Accessories
+
+<ol>
+<li> Watches</li>
+<li> Sunglasses</li>
+</ol>
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -663,6 +901,10 @@ Here we have <em>psi</em></p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/04/tinder-like-android-app-that-showcases-products-from-a-fashion-website/">Tinder Like Android App That Showcases Products From a Fashion Website</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/08/26/a-boilerplate-nodejs-twitter-bot-that-responds-to-twitter-mentions/">A Boilerplate Nodejs Twitter Bot That Responds to Twitter Mentions.</a>
