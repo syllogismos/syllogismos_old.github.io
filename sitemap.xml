@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://syllogismos.github.io/blog/2014/09/13/stochastic-gradient-descent/</loc>
+    <lastmod>2014-09-13T19:17:43+05:30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://syllogismos.github.io/blog/2014/09/04/tinder-like-android-app-that-showcases-products-from-a-fashion-website/</loc>
     <lastmod>2014-09-04T08:07:44+05:30</lastmod>
     <priority>0.8</priority>
@@ -35,14 +41,14 @@
   
   <url>
     <loc>http://syllogismos.github.io/blog/archives/</loc>
-    <lastmod>2014-09-04T08:33:04+05:30</lastmod>
+    <lastmod>2014-09-13T19:18:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://syllogismos.github.io/</loc>
-    <lastmod>2014-09-04T08:33:04+05:30</lastmod>
+    <lastmod>2014-09-13T19:18:24+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
