@@ -4,7 +4,7 @@
   <title><![CDATA[My blog.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-09-17T02:12:16+05:30</updated>
+  <updated>2014-09-17T02:20:04+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -158,7 +158,7 @@
     <id>http://syllogismos.github.io/blog/2014/09/13/stochastic-gradient-descent</id>
     <content type="html"><![CDATA[<p>In <strong>stochastic gradient descent</strong>, the true gradient is approximated by gradient at each single example.</p>
 
-<p>{<1>}<img src="http://upload.wikimedia.org/math/7/d/9/7d9f6671a202d94d26730ef898d8d4f2.png" alt="update rule" /></p>
+<p><img src="http://upload.wikimedia.org/math/7/d/9/7d9f6671a202d94d26730ef898d8d4f2.png" alt="update rule" /></p>
 
 <p>As the algorithm sweeps through the training set, it performs the above update for each training example. Several passes can be made over the training set until the algorithm converges, if this is done, the data can be shuffled for each pass to prevent cycles.</p>
 
@@ -366,25 +366,45 @@
 <p>So when <code>n_iter = 1</code>, went through the entire data set once, so we must check <code>97th</code> theta from our regression result from <strong>AD</strong>.
 Similarly <code>n_iter = 2</code> implies <code>97*2</code> iteration in our implementation, and etc.,</p>
 
-<p>n-iter = 1, i = 96
-scikit-learn: [array([ 0.29815173]), array([ 1.20270826])]
-AD: [0.2981517,1.2027082]</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>n-iter = 1, i = 96
+</span><span class='line'>scikit-learn: [array([ 0.29815173]), array([ 1.20270826])]
+</span><span class='line'>AD: [0.2981517,1.2027082]
+</span><span class='line'>
+</span><span class='line'>n-iter = 2, i = 97x2 - 1
+</span><span class='line'>scikit-learn: [array([ 0.49144583]), array([ 1.18148583])]  
+</span><span class='line'>AD: [0.49144596,1.1814859]
+</span><span class='line'>
+</span><span class='line'>n-iter = 3, i = 97x3 - 1  
+</span><span class='line'>scikit-learn: [array([ 0.67614512]), array([ 1.16053217])]  
+</span><span class='line'>AD: [0.67614514,1.1605322]
+</span><span class='line'>
+</span><span class='line'>n-iter = 4, i = 97x4 - 1  
+</span><span class='line'>scikit-learn: [array([ 0.85268182]), array([ 1.14050415])]  
+</span><span class='line'>AD: [0.8526818,1.1405041]
+</span><span class='line'>
+</span><span class='line'>n-iter = 5, i = 97X5 -1  
+</span><span class='line'>scikit-learn: [array([ 1.02141669]), array([ 1.12136124])]  
+</span><span class='line'>AD: [1.0214167,1.1213613]</span></code></pre></td></tr></table></div></figure>
 
-<p>n-iter = 2, i = 97x2 - 1
-scikit-learn: [array([ 0.49144583]), array([ 1.18148583])]
-AD: [0.49144596,1.1814859]</p>
-
-<p>n-iter = 3, i = 97x3 - 1<br/>
-scikit-learn: [array([ 0.67614512]), array([ 1.16053217])]
-AD: [0.67614514,1.1605322]</p>
-
-<p>n-iter = 4, i = 97x4 - 1
-scikit-learn: [array([ 0.85268182]), array([ 1.14050415])]
-AD: [0.8526818,1.1405041]</p>
-
-<p>n-iter = 5, i = 97X5 -1
-scikit-learn: [array([ 1.02141669]), array([ 1.12136124])]
-AD: [1.0214167,1.1213613]</p>
 
 <p><a href="http://www.github.com/syllogismos/machine-learning-haskell">Here</a> in this repository, you can find the ipython notebook and haskell code so that you can test these yourself.</p>
 
