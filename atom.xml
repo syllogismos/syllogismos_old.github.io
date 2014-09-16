@@ -4,7 +4,7 @@
   <title><![CDATA[My blog.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-09-17T02:24:20+05:30</updated>
+  <updated>2014-09-17T02:29:56+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -164,7 +164,7 @@
 
 <p>Obviously it is faster than normal gradient descent, cause we don&rsquo;t have to compute  cost function over the entire data set in each iteration in case of stochastic gradinet descent.</p>
 
-<h4>stochasticGradientDescent in AD:</h4>
+<h2>stochasticGradientDescent in AD:</h2>
 
 <p>This is my implementation of Stochastic Gradient Descent in AD library, you can get it from <a href="http://github.com/syllogismos/ad">my fork</a> of AD.</p>
 
@@ -184,7 +184,7 @@
 
 <p></p>
 
-<h5>Its arguments are:</h5>
+<h4>Its arguments are:</h4>
 
 <ul>
 <li><code>errorSingle :: (forall s. Reifies s Tape =&gt; f (Scalar a) -&gt; f (Reverse s a) -&gt; Reverse s a)</code> function, that computes error in a single training sample given <code>theta</code></li>
@@ -193,7 +193,7 @@
 </ul>
 
 
-<h4>Example:</h4>
+<h2>Example:</h2>
 
 <p><a href="https://raw.githubusercontent.com/syllogismos/machine-learning-haskell/master/exampledata.txt">Here</a> is the sample data I&rsquo;m running <code>stochasticGradientDescent</code> on.</p>
 
@@ -283,7 +283,7 @@
 </span><span class='line'>(0.05 secs, 3707068 bytes)</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Cross checking with SGDRegressor from scikit-learn</h4>
+<h2>Cross checking with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html">SGDRegressor</a> from scikit-learn</h2>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -350,9 +350,9 @@
 </span><span class='line'># regularization parameter alpha = 0.0, as we ignored reqularization
 </span><span class='line'># loss function = squared_loss
 </span><span class='line'># n_iter or epoch, how many times does the algorithm pass our training data.
-</span><span class='line'>&gt; clf = linear_model.SGDRegressor(alpha=0.0, eta0=0.001, loss='squared_loss',n_iter=1, learning_rate='constant' )
+</span><span class='line'>&gt; reg = linear_model.SGDRegressor(alpha=0.0, eta0=0.001, loss='squared_loss',n_iter=1, learning_rate='constant' )
 </span><span class='line'># start training with initial theta of 0, 0
-</span><span class='line'>&gt; sgd = clf.fit(x,y, coef_init=[0], intercept_init=[0])
+</span><span class='line'>&gt; sgd = reg.fit(x,y, coef_init=[0], intercept_init=[0])
 </span><span class='line'>&gt; print [sgd.intercept_, sgd.coef_]
 </span><span class='line'>[array([ 0.29815173]), array([ 1.20270826])]</span></code></pre></td></tr></table></div></figure>
 
@@ -361,7 +361,7 @@
 
 <p>The rest of the things like the sort of regulariztion, regularization parameter, loss function we are using, we can specify in <code>errorSingle</code>.</p>
 
-<h4>Results:</h4>
+<h2>Results:</h2>
 
 <p>So when <code>n_iter = 1</code>, went through the entire data set once, so we must check <code>97th</code> theta from our regression result from <strong>AD</strong>.
 Similarly <code>n_iter = 2</code> implies <code>97*2</code> iteration in our implementation, and etc.,</p>
@@ -408,7 +408,7 @@ Similarly <code>n_iter = 2</code> implies <code>97*2</code> iteration in our imp
 
 <p><a href="http://www.github.com/syllogismos/machine-learning-haskell">Here</a> in this repository, you can find the ipython notebook and haskell code so that you can test these yourself.</p>
 
-<h3>References:</h3>
+<h2>References:</h2>
 
 <ol>
 <li><a href="http://en.wikipedia.org/wiki/Stochastic_gradient_descent">Stochastic Gradient Descent on wikipedia</a></li>
