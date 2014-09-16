@@ -14,7 +14,7 @@ As the algorithm sweeps through the training set, it performs the above update f
 
 Obviously it is faster than normal gradient descent, cause we don't have to compute  cost function over the entire data set in each iteration in case of stochastic gradinet descent.
 
-#### stochasticGradientDescent in AD:
+## stochasticGradientDescent in AD:
 This is my implementation of Stochastic Gradient Descent in AD library, you can get it from [my fork](http://github.com/syllogismos/ad) of AD.
 
 Its type signature is 
@@ -26,12 +26,12 @@ stochasticGradientDescent :: (Traversable f, Fractional a, Ord a)
   -> [f a]
 ```  
 
-#####Its arguments are:  
+####Its arguments are:  
 * ```errorSingle :: (forall s. Reifies s Tape => f (Scalar a) -> f (Reverse s a) -> Reverse s a)``` function, that computes error in a single training sample given ```theta```
 * Entire training data, you should be able to map the above ```errorSingle``` function over the training data.
 * and initial Theta
 
-#### Example:
+## Example:
 [Here](https://raw.githubusercontent.com/syllogismos/machine-learning-haskell/master/exampledata.txt) is the sample data I'm running ```stochasticGradientDescent``` on.
 
 Its just 97 rows of samples with two columns, first column is ```y``` and the other is ```x```
@@ -81,7 +81,7 @@ lambda: sgdRegressor [0, 0] !! (97*5 -1)
 (0.05 secs, 3707068 bytes)
 ```
 
-#### Cross checking with SGDRegressor from scikit-learn
+## Cross checking with [SGDRegressor](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html) from scikit-learn
 ```
 > import csv
 > import numpy as np
@@ -113,9 +113,9 @@ lambda: sgdRegressor [0, 0] !! (97*5 -1)
 # regularization parameter alpha = 0.0, as we ignored reqularization
 # loss function = squared_loss
 # n_iter or epoch, how many times does the algorithm pass our training data.
-> clf = linear_model.SGDRegressor(alpha=0.0, eta0=0.001, loss='squared_loss',n_iter=1, learning_rate='constant' )
+> reg = linear_model.SGDRegressor(alpha=0.0, eta0=0.001, loss='squared_loss',n_iter=1, learning_rate='constant' )
 # start training with initial theta of 0, 0
-> sgd = clf.fit(x,y, coef_init=[0], intercept_init=[0])
+> sgd = reg.fit(x,y, coef_init=[0], intercept_init=[0])
 > print [sgd.intercept_, sgd.coef_]
 [array([ 0.29815173]), array([ 1.20270826])]
 ```
@@ -124,7 +124,7 @@ The only restriction we have in our implementation of stochasticGradientDescent 
 
 The rest of the things like the sort of regulariztion, regularization parameter, loss function we are using, we can specify in ```errorSingle```.
 
-#### Results:
+## Results:
 So when ```n_iter = 1```, went through the entire data set once, so we must check ```97th``` theta from our regression result from **AD**.
 Similarly ```n_iter = 2``` implies ```97*2``` iteration in our implementation, and etc.,
 
@@ -152,7 +152,7 @@ AD: [1.0214167,1.1213613]
 
 [Here](http://www.github.com/syllogismos/machine-learning-haskell) in this repository, you can find the ipython notebook and haskell code so that you can test these yourself.
 
-### References:
+## References:
 1. [Stochastic Gradient Descent on wikipedia](http://en.wikipedia.org/wiki/Stochastic_gradient_descent)
 2. [SGDRegressor from scikit-learn](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html)
 3. [Gradient Descent vs Stochastic Gradient Descent](http://www.quora.com/Whats-the-difference-between-gradient-descent-and-stochastic-gradient-descent)
