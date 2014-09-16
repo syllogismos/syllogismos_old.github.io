@@ -4,7 +4,7 @@
   <title><![CDATA[My blog.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-09-17T02:20:04+05:30</updated>
+  <updated>2014-09-17T02:24:20+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -162,7 +162,7 @@
 
 <p>As the algorithm sweeps through the training set, it performs the above update for each training example. Several passes can be made over the training set until the algorithm converges, if this is done, the data can be shuffled for each pass to prevent cycles.</p>
 
-<p>Obviously it is faster than normal gradient descent, cause in each iteration we compute cost function over the entire data set.</p>
+<p>Obviously it is faster than normal gradient descent, cause we don&rsquo;t have to compute  cost function over the entire data set in each iteration in case of stochastic gradinet descent.</p>
 
 <h4>stochasticGradientDescent in AD:</h4>
 
