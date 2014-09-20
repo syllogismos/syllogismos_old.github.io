@@ -4,7 +4,7 @@
   <title><![CDATA[My blog.]]></title>
   <link href="http://syllogismos.github.io/atom.xml" rel="self"/>
   <link href="http://syllogismos.github.io/"/>
-  <updated>2014-09-20T11:54:02+05:30</updated>
+  <updated>2014-09-20T11:58:07+05:30</updated>
   <id>http://syllogismos.github.io/</id>
   <author>
     <name><![CDATA[syllogismos]]></name>
@@ -170,16 +170,24 @@
 
 <p>Its type signature is</p>
 
-<script src="https://gist.github.com/syllogismos/7f12c93cfde5dba868cf.js"></script>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>stochasticGradientDescent :: (Traversable f, Fractional a, Ord a) 
+</span><span class='line'>  =&gt; (forall s. Reifies s Tape =&gt; f (Scalar a) -&gt; f (Reverse s a) -&gt; Reverse s a) 
+</span><span class='line'>  -&gt; [f (Scalar a)]
+</span><span class='line'>  -&gt; f a 
+</span><span class='line'>  -&gt; [f a]</span></code></pre></td></tr></table></div></figure>
 
+
+<p></p>
 
 <h4>Its arguments are:</h4>
 
-<script src="https://gist.github.com/syllogismos/2c78adc0d5a9a27fdf97.js"></script>
-
-
 <ul>
-<li>errorSingle function, that computes error in a single training sample given <code>theta</code></li>
+<li><code>errorSingle :: (forall s. Reifies s Tape =&gt; f (Scalar a) -&gt; f (Reverse s a) -&gt; Reverse s a)</code> function, that computes error in a single training sample given <code>theta</code></li>
 <li>Entire training data, you should be able to map the above <code>errorSingle</code> function over the training data.</li>
 <li>and initial Theta</li>
 </ul>
@@ -193,17 +201,160 @@
 
 <p>Below is our error function, a simple squared loss error function. You can introduce regularization here if you want.</p>
 
-<script src="https://gist.github.com/syllogismos/a242a7df1de346a94a96.js"></script>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>errorSingle :: 
+</span><span class='line'>  forall a. (Floating a, Mode a) 
+</span><span class='line'>  =&gt; [Scalar a] 
+</span><span class='line'>  -&gt; [a] 
+</span><span class='line'>  -&gt; a
+</span><span class='line'>errorSingle d0 theta = sqhalf $ costSingle (tail d0) theta - auto ( head d0)
+</span><span class='line'>  where
+</span><span class='line'>    sqhalf t = (t**2)/2
+</span><span class='line'>    
+</span><span class='line'>costSingle x' theta' = constant + sum (zipWith (*) coeff autox')
+</span><span class='line'>      where
+</span><span class='line'>        constant = head theta'
+</span><span class='line'>        autox' = map auto x'
+</span><span class='line'>        coeff = tail theta'</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Running Stochastic Gradient Descent:</p>
 
-<script src="https://gist.github.com/syllogismos/313670f337e92c27cfdb.js"></script>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lambda: a &lt;- readFile "exampledata.txt"
+</span><span class='line'>lambda: let d = lines a
+</span><span class='line'>lambda: let train = map ((read :: String -&gt; [Float]) . (\tmp -&gt; "[" ++ tmp ++ "]")) d
+</span><span class='line'>lambda: let sgdRegressor = stochasticGradientDescent errorSingle train
+</span><span class='line'>
+</span><span class='line'>lambda: sgdRegressor [0, 0] !! 96
+</span><span class='line'>[0.2981517,1.2027082]
+</span><span class='line'>(0.03 secs, 4228764 bytes)
+</span><span class='line'>
+</span><span class='line'>lambda: sgdRegressor [0, 0] !! (97*2 -1)
+</span><span class='line'>[0.49144596,1.1814859]
+</span><span class='line'>(0.03 secs, 2097796 bytes)
+</span><span class='line'>
+</span><span class='line'>lambda: sgdRegressor [0, 0] !! (97*3 -1)
+</span><span class='line'>[0.67614514,1.1605322]
+</span><span class='line'>(0.03 secs, 2647504 bytes)
+</span><span class='line'>
+</span><span class='line'>lambda: sgdRegressor [0, 0] !! (97*4 -1)
+</span><span class='line'>[0.8526818,1.1405041]
+</span><span class='line'>(0.03 secs, 3158452 bytes)
+</span><span class='line'>
+</span><span class='line'>lambda: sgdRegressor [0, 0] !! (97*5 -1)
+</span><span class='line'>[1.0214167,1.1213613]
+</span><span class='line'>(0.05 secs, 3707068 bytes)</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>Cross checking with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html">SGDRegressor</a> from scikit-learn</h2>
 
-<script src="https://gist.github.com/syllogismos/ace3db2e498644fa4755.js"></script>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; import csv
+</span><span class='line'>&gt; import numpy as np
+</span><span class='line'>&gt; from sklearn import linear_model
+</span><span class='line'>
+</span><span class='line'>&gt; f = open('exampledata.txt', 'r')
+</span><span class='line'>&gt; fcsv = csv.reader(f)
+</span><span class='line'>
+</span><span class='line'>&gt; d = []
+</span><span class='line'>&gt; try:
+</span><span class='line'>&gt;    while True:
+</span><span class='line'>&gt;        d.append(fcsv.next())
+</span><span class='line'>&gt; except:
+</span><span class='line'>&gt;     pass
+</span><span class='line'>&gt; f.close()
+</span><span class='line'>
+</span><span class='line'>&gt; for i in range(len(d)):
+</span><span class='line'>&gt;     for j in range(2):
+</span><span class='line'>&gt;         d[i][j] = float(d[i][j])
+</span><span class='line'>
+</span><span class='line'>&gt; x = []
+</span><span class='line'>&gt; y = []
+</span><span class='line'>&gt; for i in range(len(d)):
+</span><span class='line'>&gt;     x.append(d[i][1:])
+</span><span class='line'>&gt;     y.append(d[i][0])
+</span><span class='line'>
+</span><span class='line'># initial learning rate eta0 = 0.001
+</span><span class='line'># learning rate is constant
+</span><span class='line'># regularization parameter alpha = 0.0, as we ignored reqularization
+</span><span class='line'># loss function = squared_loss
+</span><span class='line'># n_iter or epoch, how many times does the algorithm pass our training data.
+</span><span class='line'>&gt; reg = linear_model.SGDRegressor(alpha=0.0, eta0=0.001, loss='squared_loss',n_iter=1, learning_rate='constant' )
+</span><span class='line'># start training with initial theta of 0, 0
+</span><span class='line'>&gt; sgd = reg.fit(x,y, coef_init=[0], intercept_init=[0])
+</span><span class='line'>&gt; print [sgd.intercept_, sgd.coef_]
+</span><span class='line'>[array([ 0.29815173]), array([ 1.20270826])]</span></code></pre></td></tr></table></div></figure>
 
 
 <p>The only restriction we have in our implementation of stochasticGradientDescent is that we set the learning rate a default value of 0.001 and is a constant through out the algorithm.</p>
@@ -215,7 +366,44 @@
 <p>So when <code>n_iter = 1</code>, went through the entire data set once, so we must check <code>97th</code> theta from our regression result from <strong>AD</strong>.
 Similarly <code>n_iter = 2</code> implies <code>97*2</code> iteration in our implementation, and etc.,</p>
 
-<script src="https://gist.github.com/syllogismos/311b1e541196aef0bbe0.js"></script>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>n-iter = 1, i = 96
+</span><span class='line'>scikit-learn: [array([ 0.29815173]), array([ 1.20270826])]
+</span><span class='line'>AD: [0.2981517,1.2027082]
+</span><span class='line'>
+</span><span class='line'>n-iter = 2, i = 97x2 - 1
+</span><span class='line'>scikit-learn: [array([ 0.49144583]), array([ 1.18148583])]  
+</span><span class='line'>AD: [0.49144596,1.1814859]
+</span><span class='line'>
+</span><span class='line'>n-iter = 3, i = 97x3 - 1  
+</span><span class='line'>scikit-learn: [array([ 0.67614512]), array([ 1.16053217])]  
+</span><span class='line'>AD: [0.67614514,1.1605322]
+</span><span class='line'>
+</span><span class='line'>n-iter = 4, i = 97x4 - 1  
+</span><span class='line'>scikit-learn: [array([ 0.85268182]), array([ 1.14050415])]  
+</span><span class='line'>AD: [0.8526818,1.1405041]
+</span><span class='line'>
+</span><span class='line'>n-iter = 5, i = 97X5 -1  
+</span><span class='line'>scikit-learn: [array([ 1.02141669]), array([ 1.12136124])]  
+</span><span class='line'>AD: [1.0214167,1.1213613]</span></code></pre></td></tr></table></div></figure>
 
 
 <p><a href="http://www.github.com/syllogismos/machine-learning-haskell">Here</a> in this repository, you can find the ipython notebook and haskell code so that you can test these yourself.</p>
